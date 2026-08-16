@@ -16,7 +16,7 @@ or
 For each run, we randomly relabel every Boolean variable, producing an
 isomorphic SAT instance.  We then solve that instance with:
 
-    kissat --no-bump
+    kissat --no-bump --no-tumble --reorder=0
 
 The SAT problem is mathematically identical; only the variable labels/order
 have changed.
@@ -51,7 +51,7 @@ DEFAULT_RESULTS = (
     DEFAULT_PROJECT
     / "experiments"
     / "results"
-    / "random_order_HJ_4_2_7.csv"
+    / "random_order_static_HJ_4_2_7.csv"
 )
 
 DEFAULT_BASE_SEED = 20260815
@@ -246,12 +246,14 @@ def run_kissat(
     timeout: float,
 ):
     """
-    Run Kissat with variable bumping disabled.
+    Run Kissat with bumping, tumbling, and reordering disabled.
     """
 
     command = [
         str(kissat),
         "--no-bump",
+        "--no-tumble",
+        "--reorder=0",
         str(cnf),
     ]
 
@@ -590,7 +592,7 @@ def run_one_ordering(
         row = {
             "instance": instance.name,
             "solver": "kissat",
-            "configuration": "no_bump",
+            "configuration": "no_bump_no_tumble_reorder_0",
             "ordering": ordering_name,
             "run": run_number,
             "seed": seed_string,
