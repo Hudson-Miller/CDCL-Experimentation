@@ -22,7 +22,7 @@ def main():
         top += 1; xs = [p + 1 for p in L]
         w.append(xs + [top]); w.append([-x for x in xs] + [top]); w.append([-top], weight=1)
     t = time.time()
-    with RC2(w, solver="cd19") as rc2:
+    with RC2(w, solver="cd19", verbose=1) as rc2:   # prints "c cost: X" each time the lower bound rises
         mdl = rc2.compute(); opt = rc2.cost
     col = [1 if mdl[i] > 0 else 0 for i in range(N)]
     mono = [L for L in lines if len({col[q] for q in L}) == 1]
