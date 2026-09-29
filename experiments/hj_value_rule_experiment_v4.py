@@ -406,9 +406,12 @@ def run_one(task, check=False):
 
 
 def worker(task, timeout):
-    """Runs one task in a child process so it can be killed on timeout."""
-    q = mp.Queue()
-    p = mp.Process(target=_child, args=(q, task))
+    """Runs one task in a child process so it can be killed on timeout.
+    Spawn, not fork: a child forked from a ThreadPool thread can inherit a
+    held stdout lock and hang, which shows up as TIMEOUT on trivial runs."""
+    ctx = mp.get_context("spawn")
+    q = ctx.Queue()
+    p = ctx.Process(target=_child, args=(q, task))
     p.start()
     p.join(timeout)
     if p.is_alive():
