@@ -3,7 +3,7 @@
 #SBATCH --partition=cpu
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=9G
+#SBATCH --mem=6G
 #SBATCH --time=01:30:00
 #SBATCH --output=/home/hrmiller/CDCL-Experimentation/experiments/results/dynseek.slurm.out
 #SBATCH --error=/home/hrmiller/CDCL-Experimentation/experiments/results/dynseek.slurm.err
