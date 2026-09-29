@@ -3,7 +3,7 @@
 #SBATCH --partition=cpu
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=48G
+#SBATCH --mem=16G
 #SBATCH --time=12:00:00
 #SBATCH --output=/home/hrmiller/CDCL-Experimentation/experiments/results/value_rule_overnight.slurm.out
 #SBATCH --error=/home/hrmiller/CDCL-Experimentation/experiments/results/value_rule_overnight.slurm.err
